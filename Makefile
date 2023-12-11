@@ -24,9 +24,20 @@ docker: ## Build docker image
 image-load:
 	kind load --name ans-deployment docker-image ans
 
-
 kind-setup: ## Setup a kind cluster called ans-deployment
 	kind create cluster --config kind-config.yaml --name ans-deployment 
 
 kind-del: ## Remove a kind cluster called ans-deployment
 	kind delete cluster --name ans-deployment
+
+run-server-pod: ## Run the server pod
+	kubectl create -f server-pod.yaml
+
+run-client-pod: ## Run the client pod
+	kubectl create -f client-pod.yaml
+
+server-logs: ## Get the server pod logs (Empty is good).
+	kubectl logs server-pod
+
+client-logs: ## Get the client pod logs. (Should show connection refused).
+	kubectl logs client-pod
