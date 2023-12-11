@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: server-pod 
+spec:
+  containers:
+  - name: server 
+    image: ans:latest
+    imagePullPolicy: IfNotPresent
+    command: ["socat", "abstract-listen:@test,fork", "-"] # socat abstract-listen:@example,fork -
+  restartPolicy: Never

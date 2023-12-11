@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-pod 
+spec:
+  containers:
+  - name: client 
+    image: ans:latest
+    imagePullPolicy: IfNotPresent
+    command: ["socat", "abstract-connect:@test", "-"]
+  restartPolicy: Never
